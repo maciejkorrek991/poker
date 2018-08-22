@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package backEnd.engine.Game;
+package backEnd.engine.Props;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * @author Maciek
  */
 public class Card {
@@ -24,7 +23,6 @@ public class Card {
     Map<Integer, String> suitHasMap = new HashMap<>();
 
     /**
-     *
      * @param p_idValue
      * @param p_idSuit
      */
@@ -35,7 +33,6 @@ public class Card {
     }
 
     /**
-     *
      * @return
      */
     public String getValue() {
@@ -43,7 +40,6 @@ public class Card {
     }
 
     /**
-     *
      * @return
      */
     public String getSuit() {

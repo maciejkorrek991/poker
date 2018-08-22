@@ -3,21 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package backEnd.Characters;
+package backEnd.engine.Characters;
 
-import backEnd.engine.Game.Card;
-import backEnd.engine.Game.Deck;
-import backEnd.engine.Game.Table;
+import backEnd.engine.Props.Card;
+import backEnd.engine.Props.Deck;
+import backEnd.engine.Props.Seat;
+import backEnd.engine.Props.Table;
+
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
- *
  * @author Maciek
  */
 public class Croupier extends Character {
 
     /**
-     *
      * @param p_name
      */
     public Croupier(String p_name) {
@@ -25,23 +26,21 @@ public class Croupier extends Character {
     }
 
     /**
-     *
      * @param deck
      * @return
      */
     public Card getCard(Deck deck) {
-        Random gen = new Random();
-        int cardId = 5;
-        return deck.getCard(cardId);
+        int x = deck.getSize()-1;
+        int randomNum = ThreadLocalRandom.current().nextInt(0,deck.getSize()-1);
+        return deck.getCard(randomNum);
     }
 
     /**
-     *
      * @param p_card
-     * @param p_player
+     * @param p_seat
      */
-    public void giveCard(Card p_card, Player p_player) {
-        p_player.setCard(p_card);
+    public void giveCard(Card p_card, Seat p_seat) {
+        p_seat.setCard(p_card);
     }
 
     public void firstDeal(Table p_table, Deck p_deck) {

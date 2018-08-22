@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package backEnd.Characters;
-
-import java.util.ArrayList;
+package backEnd.engine.Characters;
 
 /**
- *
  * @author Maciek
  */
 public abstract class Character {
@@ -19,7 +16,6 @@ public abstract class Character {
     public String name;
 
     /**
-     *
      * @param p_name
      */
     public Character(String p_name) {
@@ -27,7 +23,6 @@ public abstract class Character {
     }
 
     /**
-     *
      * @return
      */
     public String getName() {

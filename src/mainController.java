@@ -1,12 +1,12 @@
-import backEnd.engine.gameController;
+import backEnd.backController;
 
 public class mainController {
-    public mainController(){
+    public mainController() {
         System.out.println("Uruchomilem mainController");
     }
 
-    public void start(){
-        gameController gameCtrl = new gameController();
-        gameCtrl.startGame();
+    public void start() {
+        backController gameCtrl = new backController();
+
     }
 }

@@ -1,22 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package backEnd.engine;
 
-import backEnd.Characters.Croupier;
-import backEnd.Characters.Player;
-import backEnd.engine.Game.Deck;
-import backEnd.engine.Game.Table;
+import backEnd.engine.Characters.Croupier;
+import backEnd.engine.Characters.Player;
+import backEnd.engine.Props.Deck;
+import backEnd.engine.Props.Table;
+
 import java.util.ArrayList;
 
-/**
- *
- * @author Maciek
- */
-public final class gameController {
-public ArrayList<Player> players = new ArrayList<>();
+public class gameController {
+    public ArrayList<Player> players = new ArrayList<>();
     /**
      *
      */
@@ -39,13 +31,27 @@ public ArrayList<Player> players = new ArrayList<>();
         table = new Table();
         croupier = new Croupier("Krupier");
         players.add(new Player("Maciek"));
+        table.seats.get(0).seatPlayer(players.get(0));
         players.add(new Player("Seba"));
+        table.seats.get(1).seatPlayer(players.get(1));
         deck = new Deck();
         croupier.firstDeal(table, deck);
         System.out.println("Po rozdaniu, karty na stole:");
         table.showCards();
-        System.out.println("Showdeck:");
-        test();
+        croupier.giveCard(croupier.getCard(deck), table.getSeat(0));
+        croupier.giveCard(croupier.getCard(deck), table.getSeat(0));
+        croupier.giveCard(croupier.getCard(deck), table.getSeat(1));
+        croupier.giveCard(croupier.getCard(deck), table.getSeat(1));
+        System.out.println("Karty gracza Maciek:");
+        table.showSeatCards(0);
+        System.out.println("Karty gracza Seba:");
+        table.showSeatCards(1);
+        //System.out.println("Showdeck:");
+        //test();
+        System.out.println("Szanse gracza Seba:");
+        table.showChanses(table.getSeat(0), deck);
+        System.out.println("Szanse gracza Maciek:");
+        table.showChanses(table.getSeat(1), deck);
     }
 
     /**
@@ -61,8 +67,8 @@ public ArrayList<Player> players = new ArrayList<>();
     public void seatPlayers() {
 
     }
-    
-    public void test(){
+
+    public void test() {
         deck.showDeck();
     }
 }

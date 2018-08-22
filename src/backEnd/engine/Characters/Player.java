@@ -3,19 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package backEnd.engine.Characters;
 
 /**
  * @author Maciek
  */
-public class Poker {
+public class Player extends Character {
+
 
     /**
-     * @param args the command line arguments
+     * @param p_name
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        mainController ctrl = new mainController();
-        ctrl.start();
+    public Player(String p_name) {
+        super(p_name);
     }
+
+    /**
+     *
+     * @param p_card
+     */
 
 }
