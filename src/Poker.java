@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 
-import backEnd.engine.Controller;
-
 /**
  *
  * @author Maciek
@@ -17,8 +15,8 @@ public class Poker {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Controller ctrl = new Controller();
-        ctrl.startGame();
+        mainController ctrl = new mainController();
+        ctrl.start();
     }
 
 }

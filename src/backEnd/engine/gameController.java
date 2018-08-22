@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Maciek
  */
-public final class Controller {
+public final class gameController {
 public ArrayList<Player> players = new ArrayList<>();
     /**
      *
@@ -35,7 +35,7 @@ public ArrayList<Player> players = new ArrayList<>();
     /**
      *
      */
-    public Controller() {
+    public gameController() {
         table = new Table();
         croupier = new Croupier("Krupier");
         players.add(new Player("Maciek"));
