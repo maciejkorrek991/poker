@@ -7,6 +7,7 @@ package backEnd.engine.Props;
 
 import backEnd.engine.Characters.Player;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,8 +18,10 @@ public class Table {
 
     public ArrayList<Seat> seats = new ArrayList<Seat>();
     public HashMap<handValue, Float> chances = new HashMap<handValue, Float>();
-
+    public HashMap<cards,Card> cardCompareHashMap;
+    private DecimalFormat decimalFormat = new DecimalFormat("#,#####");
     public enum handValue {HIGHCARD, PAIR, TWO_PAIRS, THREE_OF_KIND, STRAIGHT, FLUSH, FULL_HOUSE, FOUR_OF_A_KIND, STRAIGHT_FLUSH, ROYAL_FLUSH}
+    public enum cards {CARD1, CARD2, FLOP1, FLOP2, FLOP3, TURN, RIVER}
 
     private Card flop1;
     private Card flop2;
@@ -30,6 +33,8 @@ public class Table {
         for (int i = 0; i < 8; i++) {
             seats.add(new Seat(i));
         }
+
+setCardsEmpty();
 
         chances.put(handValue.HIGHCARD, (float) 0.00);
         chances.put(handValue.PAIR, (float) 0.00);
@@ -43,7 +48,16 @@ public class Table {
         chances.put(handValue.ROYAL_FLUSH, (float) 0.00);
 
     }
-
+    private void setCardsEmpty(){
+        cardCompareHashMap = new HashMap<>();
+        cardCompareHashMap.put(cards.CARD1,null);
+        cardCompareHashMap.put(cards.CARD2,null);
+        cardCompareHashMap.put(cards.FLOP1,null);
+        cardCompareHashMap.put(cards.FLOP2,null);
+        cardCompareHashMap.put(cards.FLOP3,null);
+        cardCompareHashMap.put(cards.TURN,null);
+        cardCompareHashMap.put(cards.RIVER,null);
+    }
     public void setFlop(Card p_flop1, Card p_flop2, Card p_flop3) {
         this.flop1 = p_flop1;
         this.flop2 = p_flop2;
@@ -65,14 +79,21 @@ public class Table {
     }
 
     public HashMap<handValue, Float> calculateChances(Seat p_seat, Deck deck) {
-        float x = (float) 0;
-        if (p_seat.getCard1().getValue().equals(p_seat.getCard2().getValue()))
-            x = (float) 100.0;
-        else
-            x = (float) 2* 1 / deck.getSize();
-
-        chances.replace(handValue.PAIR, x);
+        chances.replace(handValue.PAIR, calculatePair(p_seat.getCard1(),p_seat.getCard2(),deck));
         return chances;
+    }
+
+    private float calculatePair(Card p_card1, Card p_card2, Deck deck){
+        float x = (float) 0;
+        for (cards k : cardCompareHashMap.keySet()) {
+            k.equals()
+        }
+        if (p_card1.getValue().equals(p_card2.getValue()))
+            x = (float) 100.0;
+        else {
+            x = (float) 2* 1 / deck.getSize();
+        }
+        return Float.valueOf(decimalFormat.format(x));
     }
 
     public void showChanses(Seat p_seat, Deck deck) {
