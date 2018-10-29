@@ -21,7 +21,7 @@ public class dbController {
     public void testConnection(){
 
         System.out.println("Trying to create a test connection with the database.");
-       // Configuration configuration = new Configuration();
+        Configuration configuration = new Configuration();
         /*configuration.configure("hibernate.cfg.xml");
         StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
         SessionFactory sessionFactory = configuration.buildSessionFactory(ssrb.build());
