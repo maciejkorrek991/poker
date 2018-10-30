@@ -1,12 +1,17 @@
 package backEnd.database;
 
 
+import backEnd.engine.Props.Card;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import java.sql.*;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 
 public class dbController {
@@ -47,10 +52,27 @@ public class dbController {
 
         SessionFactory factory = new Configuration().configure().buildSessionFactory();
 
-        // create session
-        Session session = factory.getCurrentSession();
 
-        factory.close();
+
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            List cards = session.createQuery("FROM Card").list();
+            for (Iterator iterator = cards.iterator(); iterator.hasNext();){
+                Card card = (Card) iterator.next();
+                System.out.print("Card_id: " + card.getCard_id());
+                System.out.print("Value: " + card.getValue());
+                System.out.println("Suit: " + card.getSuit());
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
 
     }
 }

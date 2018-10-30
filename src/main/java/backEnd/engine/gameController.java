@@ -48,7 +48,7 @@ public class gameController {
         System.out.println("Karty gracza Seba:");
         table.showSeatCards(1);
         //System.out.println("Showdeck:");
-        //test();
+        //Card.hbm.xml();
         System.out.println("Szanse gracza Seba:");
         table.showChanses(table.getSeat(0), deck);
         System.out.println("Szanse gracza Maciek:");

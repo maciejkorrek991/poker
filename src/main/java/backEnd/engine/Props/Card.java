@@ -5,9 +5,6 @@
  */
 package backEnd.engine.Props;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author Maciek
  */
@@ -16,20 +13,42 @@ public class Card {
     /**
      *
      */
-    private final String value;
-    private final String suit;
+    private String value;
 
-    Map<Integer, String> valueHasMap = new HashMap<>();
-    Map<Integer, String> suitHasMap = new HashMap<>();
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public void setSuit(String suit) {
+        this.suit = suit;
+    }
+
+    private String suit;
+    private int card_id;
+
+    public int getCard_id() {
+        return card_id;
+    }
+
+    public void setCard_id(int p_card_id) {
+        this.card_id = p_card_id;
+    }
+
+
+
 
     /**
-     * @param p_idValue
-     * @param p_idSuit
+     * @param p_Value
+     * @param p_Suit
      */
-    public Card(int p_idValue, int p_idSuit) {
-        mapCards();
-        value = valueHasMap.get(p_idValue);
-        suit = suitHasMap.get(p_idSuit);
+    public Card(String p_Value, String p_Suit) {
+        this.value = p_Value;
+        this.suit = p_Suit;
+    }
+
+    public Card() {
+        this.value = "4";
+        this.suit = "A";
     }
 
     /**
@@ -46,28 +65,4 @@ public class Card {
         return suit;
     }
 
-    private void mapCards() {
-
-        valueHasMap.put(0, "2");
-        valueHasMap.put(1, "3");
-        valueHasMap.put(2, "4");
-        valueHasMap.put(3, "5");
-        valueHasMap.put(4, "6");
-        valueHasMap.put(5, "7");
-        valueHasMap.put(6, "8");
-        valueHasMap.put(7, "9");
-        valueHasMap.put(8, "10");
-        valueHasMap.put(9, "J");
-        valueHasMap.put(10, "Q");
-        valueHasMap.put(11, "K");
-        valueHasMap.put(12, "A");
-        //spade
-        suitHasMap.put(0, "S");
-        //heart
-        suitHasMap.put(1, "H");
-        //diamond
-        suitHasMap.put(2, "D");
-        //club
-        suitHasMap.put(3, "C");
-    }
 }

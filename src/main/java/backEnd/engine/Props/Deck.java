@@ -22,11 +22,11 @@ public class Deck {
      *
      */
     public Deck() {
-        for (int i = 0; i < valueSize; i++) {
+        /*for (int i = 0; i < valueSize; i++) {
             for (int j = 0; j < suitSize; j++) {
                 deck.add(new Card(i, j));
             }
-        }
+        }*/
     }
 
     public int getSize(){
