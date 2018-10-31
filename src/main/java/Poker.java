@@ -13,7 +13,6 @@ public class Poker {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         mainController ctrl = new mainController();
         ctrl.start();
     }

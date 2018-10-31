@@ -78,7 +78,7 @@ public class Draws {
     public void setRiver(int river) {
         this.river = river;
     }
-
+    //TODO uporzadkowac pola, ktore chce odczytac, ale nie zapisywac
     public void setLd_tm() {
         this.ld_tm = "a";
     }

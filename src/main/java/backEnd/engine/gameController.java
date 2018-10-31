@@ -77,6 +77,7 @@ public class gameController implements dbAction {
     }
 
     public void saveDraw() {
+        // TODO wyznaczanie id na poziomie javy, tutaj, autoincrement w draws do wyrzucenia
         Draws draws;
         draws = new Draws(1,1,1,1,1);
         db.insertInto(draws);
