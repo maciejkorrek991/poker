@@ -7,6 +7,7 @@ public class mainController {
 
     public void start() {
         backController gameCtrl = new backController();
-
+        System.out.println("koniec programu");
+        System.exit(0);
     }
 }

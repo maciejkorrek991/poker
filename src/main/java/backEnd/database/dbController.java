@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import java.io.Serializable;
 import java.sql.*;
 import java.util.Iterator;
 import java.util.List;
@@ -44,7 +45,25 @@ public class dbController {
             session.close();
         }
 
+
         return list;
+
+    }
+
+    public void insertInto(Object p_Object){
+        Session session = factory.openSession();
+        Transaction tx = session.getTransaction();
+        session.beginTransaction();
+        List list = null;
+        try {
+            session.save(p_Object);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
 
     }
 }

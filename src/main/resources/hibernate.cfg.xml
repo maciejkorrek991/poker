@@ -14,5 +14,6 @@
         <property name="format_sql">true</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <mapping resource="mappings/Card.hbm.xml"/>
+        <mapping resource="mappings/Draws.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

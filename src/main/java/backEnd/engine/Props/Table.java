@@ -18,14 +18,37 @@ public class Table {
 
     public ArrayList<Seat> seats = new ArrayList<Seat>();
     public HashMap<handValue, Float> chances = new HashMap<handValue, Float>();
-    public HashMap<cards,Card> cardCompareHashMap;
+    public HashMap<cards, Card> cardCompareHashMap;
     private DecimalFormat decimalFormat = new DecimalFormat("#,#####");
+
     public enum handValue {HIGHCARD, PAIR, TWO_PAIRS, THREE_OF_KIND, STRAIGHT, FLUSH, FULL_HOUSE, FOUR_OF_A_KIND, STRAIGHT_FLUSH, ROYAL_FLUSH}
+
     public enum cards {CARD1, CARD2, FLOP1, FLOP2, FLOP3, TURN, RIVER}
 
     private Card flop1;
     private Card flop2;
     private Card flop3;
+
+    public Card getFlop1() {
+        return flop1;
+    }
+
+    public Card getFlop2() {
+        return flop2;
+    }
+
+    public Card getFlop3() {
+        return flop3;
+    }
+
+    public Card getTurn() {
+        return turn;
+    }
+
+    public Card getRiver() {
+        return river;
+    }
+
     private Card turn;
     private Card river;
 
@@ -48,24 +71,26 @@ public class Table {
         chances.put(handValue.ROYAL_FLUSH, (float) 0.00);
 
     }
-    private void setCardCompareHashMapEmpty(){
+
+    private void setCardCompareHashMapEmpty() {
         cardCompareHashMap = new HashMap<>();
-        cardCompareHashMap.put(cards.CARD1,null);
-        cardCompareHashMap.put(cards.CARD2,null);
-        cardCompareHashMap.put(cards.FLOP1,null);
-        cardCompareHashMap.put(cards.FLOP2,null);
-        cardCompareHashMap.put(cards.FLOP3,null);
-        cardCompareHashMap.put(cards.TURN,null);
-        cardCompareHashMap.put(cards.RIVER,null);
+        cardCompareHashMap.put(cards.CARD1, null);
+        cardCompareHashMap.put(cards.CARD2, null);
+        cardCompareHashMap.put(cards.FLOP1, null);
+        cardCompareHashMap.put(cards.FLOP2, null);
+        cardCompareHashMap.put(cards.FLOP3, null);
+        cardCompareHashMap.put(cards.TURN, null);
+        cardCompareHashMap.put(cards.RIVER, null);
     }
-    private void setCardCompareHashMap(Seat p_seat){
-        cardCompareHashMap.put(cards.CARD1,p_seat.getCard1());
-        cardCompareHashMap.put(cards.CARD2,p_seat.getCard2());
-        cardCompareHashMap.put(cards.FLOP1,flop1);
-        cardCompareHashMap.put(cards.FLOP2,flop2);
-        cardCompareHashMap.put(cards.FLOP3,flop3);
-        cardCompareHashMap.put(cards.TURN,turn);
-        cardCompareHashMap.put(cards.RIVER,river);
+
+    private void setCardCompareHashMap(Seat p_seat) {
+        cardCompareHashMap.put(cards.CARD1, p_seat.getCard1());
+        cardCompareHashMap.put(cards.CARD2, p_seat.getCard2());
+        cardCompareHashMap.put(cards.FLOP1, flop1);
+        cardCompareHashMap.put(cards.FLOP2, flop2);
+        cardCompareHashMap.put(cards.FLOP3, flop3);
+        cardCompareHashMap.put(cards.TURN, turn);
+        cardCompareHashMap.put(cards.RIVER, river);
     }
 
     public void setFlop(Card p_flop1, Card p_flop2, Card p_flop3) {
@@ -95,23 +120,21 @@ public class Table {
     }
 
 
-
-
-    private float calculatePair(Card p_card1, Card p_card2, int deckSize){
+    private float calculatePair(Card p_card1, Card p_card2, int deckSize) {
         float x = (float) 0;
-        for (int i = 0; i<cardCompareHashMap.size(); i++) {
+        for (int i = 0; i < cardCompareHashMap.size(); i++) {
             System.out.println("Test: " + i + " " + cardCompareHashMap.get(i).getValue() + " " + cardCompareHashMap.get(i).getSuit());
         }
 
-        for (int i=0; i< cardCompareHashMap.size() ; i++) {
-            for (int j=0; j< cardCompareHashMap.size() ; j++){
+        for (int i = 0; i < cardCompareHashMap.size(); i++) {
+            for (int j = 0; j < cardCompareHashMap.size(); j++) {
 
-                        String iCard = cardCompareHashMap.get(cards.values()[i]).getValue();
-                        String jCard = cardCompareHashMap.get(cards.values()[j]).getValue();
-                        if (j != i) {
-                            if (cardCompareHashMap.get(cards.values()[i]).getValue().equals(cardCompareHashMap.get(cards.values()[j]).getValue()))
-                                return (float) 100.0;
-                        }
+                String iCard = cardCompareHashMap.get(cards.values()[i]).getValue();
+                String jCard = cardCompareHashMap.get(cards.values()[j]).getValue();
+                if (j != i) {
+                    if (cardCompareHashMap.get(cards.values()[i]).getValue().equals(cardCompareHashMap.get(cards.values()[j]).getValue()))
+                        return (float) 100.0;
+                }
 
 
             }
@@ -141,6 +164,14 @@ public class Table {
     public void showSeatCards(int p_seat) {
         System.out.println(seats.get(p_seat).getCard1().getValue() + " " + seats.get(p_seat).getCard1().getSuit());
         System.out.println(seats.get(p_seat).getCard2().getValue() + " " + seats.get(p_seat).getCard2().getSuit());
+    }
+
+    public Card getSeatCard(int p_seat, int p_card) {
+        if (p_card == 1)
+            return seats.get(p_seat).getCard1();
+        else
+            return seats.get(p_seat).getCard2();
+
     }
 
     public Seat getSeat(int p_seat) {

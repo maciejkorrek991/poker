@@ -5,6 +5,7 @@
  */
 package backEnd.engine.Props;
 
+import backEnd.database.dbAction;
 import backEnd.database.dbController;
 
 import java.util.ArrayList;
@@ -14,10 +15,10 @@ import java.util.List;
 /**
  * @author Maciek
  */
-public class Deck {
+public class Deck implements dbAction {
     private int valueSize = 13;
     private int suitSize = 4;
-    public dbController db;
+
     /**
      *
      */
@@ -27,7 +28,7 @@ public class Deck {
      *
      */
     public Deck(){
-        db = new dbController();
+
         List a = db.getRecords("Card");
         for (Iterator iterator = a.iterator(); iterator.hasNext();){
                 Card card = (Card) iterator.next();

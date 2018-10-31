@@ -1,0 +1,26 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="backEnd.database">
+    <class name = "Draws" table = "draws">
+        <meta attribute = "class-description">
+            This class contains draws details
+        </meta>
+
+        <id name = "draw_id" type = "int" column = "draw_id">
+            <generator class="native"/>
+        </id>
+
+        <property name = "flop1" column = "flop1" type = "int"/>
+        <property name = "flop2" column = "flop2" type = "int"/>
+        <property name = "flop3" column = "flop3" type = "int"/>
+        <property name = "turn" column = "turn" type = "int"/>
+        <property name = "river" column = "river" type = "int"/>
+
+
+
+
+    </class>
+</hibernate-mapping>
