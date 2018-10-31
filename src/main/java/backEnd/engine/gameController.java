@@ -38,7 +38,7 @@ public class gameController {
         deck.showDeck();
         croupier.firstDeal(table, deck);
         System.out.println("Po rozdaniu, karty na stole:");
-        //table.showCards();
+        table.showCards();
         croupier.giveCard(croupier.getCard(deck), table.getSeat(0));
         croupier.giveCard(croupier.getCard(deck), table.getSeat(0));
         croupier.giveCard(croupier.getCard(deck), table.getSeat(1));
@@ -48,7 +48,7 @@ public class gameController {
         System.out.println("Karty gracza Seba:");
         table.showSeatCards(1);
         //System.out.println("Showdeck:");
-        //Card.hbm.xml();
+
         System.out.println("Szanse gracza Seba:");
         table.showChanses(table.getSeat(0), deck);
         System.out.println("Szanse gracza Maciek:");

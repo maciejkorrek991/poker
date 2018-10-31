@@ -30,10 +30,9 @@ public class Croupier extends Character {
      * @return
      */
     public Card getCard(Deck deck) {
-        //int x = deck.getSize()-1;
-        //int randomNum = ThreadLocalRandom.current().nextInt(0,deck.getSize()-1);
-        //return deck.getCard(randomNum);
-        return new Card();
+        int x = deck.getSize()-1;
+        int randomNum = ThreadLocalRandom.current().nextInt(0,deck.getSize()-1);
+        return deck.getCard(randomNum);
     }
 
     /**

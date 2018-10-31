@@ -12,6 +12,7 @@ import backEnd.engine.gameController;
  * @author Maciek
  */
 public final class backController {
+
     gameController ctrl = new gameController();
-    dbController cd = new dbController();
+
 }

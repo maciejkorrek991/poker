@@ -5,7 +5,11 @@
  */
 package backEnd.engine.Props;
 
+import backEnd.database.dbController;
+
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Maciek
@@ -13,6 +17,7 @@ import java.util.ArrayList;
 public class Deck {
     private int valueSize = 13;
     private int suitSize = 4;
+    public dbController db;
     /**
      *
      */
@@ -21,12 +26,13 @@ public class Deck {
     /**
      *
      */
-    public Deck() {
-        /*for (int i = 0; i < valueSize; i++) {
-            for (int j = 0; j < suitSize; j++) {
-                deck.add(new Card(i, j));
+    public Deck(){
+        db = new dbController();
+        List a = db.getRecords("Card");
+        for (Iterator iterator = a.iterator(); iterator.hasNext();){
+                Card card = (Card) iterator.next();
+                        deck.add(card);
             }
-        }*/
     }
 
     public int getSize(){
@@ -44,9 +50,6 @@ public class Deck {
 
     public void showDeck() {
         final int[] tmp = {1};
-        deck.forEach((i) -> {
-            System.out.println("insert into game.cards values (" + tmp[0] + ", '" + i.getValue() + "', '" + i.getSuit()+ "');");
-            tmp[0] = tmp[0] + 1;
-        });
+
     }
 }
