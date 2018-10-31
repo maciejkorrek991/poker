@@ -63,8 +63,8 @@ public class dbController {
             for (Iterator iterator = cards.iterator(); iterator.hasNext();){
                 Card card = (Card) iterator.next();
                 System.out.print("Card_id: " + card.getCard_id());
-                System.out.print("Value: " + card.getValue());
-                System.out.println("Suit: " + card.getSuit());
+                System.out.print(" Value: " + card.getValue());
+                System.out.println(" Suit: " + card.getSuit());
             }
             tx.commit();
         } catch (HibernateException e) {
