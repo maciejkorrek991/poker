@@ -6,8 +6,6 @@
 package backEnd.engine.Props;
 
 import backEnd.database.dbAction;
-import backEnd.database.dbController;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -29,7 +27,7 @@ public class Deck implements dbAction {
      */
     public Deck(){
 
-        List a = db.getRecords("Card");
+        List a = db.getRecords("Card","");
         for (Iterator iterator = a.iterator(); iterator.hasNext();){
                 Card card = (Card) iterator.next();
                         deck.add(card);

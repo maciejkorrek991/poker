@@ -1,0 +1,17 @@
+sudo pkill -u postgres
+sudo service postgresql start
+
+select d.draw_id,
+c1.value || c1.suit as flop1,
+c2.value || c2.suit as flop2,
+c3.value || c3.suit as flop3,
+t.value || t.suit as turn,
+r.value || r.suit as river,
+d.ld_tm
+from draws d
+inner join cards c1 on d.flop1 =  c1.card_id
+inner join cards c2 on d.flop2 =  c2.card_id
+inner join cards c3 on d.flop3 =  c3.card_id
+inner join cards t on d.turn =  t.card_id
+inner join cards r on d.river =  r.card_id
+order by ld_tm desc;

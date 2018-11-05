@@ -52,14 +52,21 @@ public class gameController implements dbAction {
         table.showSeatCards(0);
         System.out.println("Karty gracza Seba:");
         table.showSeatCards(1);
+        croupier.secondDeal(table, deck);
+        croupier.thirdDeal(table, deck);
+
+
+        db.insertInto(new Draws(db.getMaxDrawId()+1, table.getFlop1().getCard_id(),table.getFlop2().getCard_id(),table.getFlop3().getCard_id(),table.getTurn().getCard_id(),table.getRiver().getCard_id()));
+
+
         saveDraw();
 
-        List a = db.getRecords("Draws");
+        List a = db.getRecords("Draws","");
         for (Iterator iterator = a.iterator(); iterator.hasNext(); ) {
             Draws draws = (Draws) iterator.next();
             System.out.print("Flop1: " + draws.getFlop1());
-            System.out.print("Flop2: " + draws.getFlop2());
-            System.out.print("Flop3: " + draws.getFlop3());
+            System.out.print(" Flop2: " + draws.getFlop2());
+            System.out.print(" Flop3: " + draws.getFlop3());
 
             System.out.print(" turn: " + draws.getTurn());
             System.out.print(" river: " + draws.getRiver());
@@ -77,9 +84,6 @@ public class gameController implements dbAction {
     }
 
     public void saveDraw() {
-        // TODO wyznaczanie id na poziomie javy, tutaj, autoincrement w draws do wyrzucenia
-        Draws draws;
-        draws = new Draws(1,1,1,1,1);
-        db.insertInto(draws);
+
     }
 }

@@ -1,12 +1,8 @@
 package backEnd.database;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
 public class Draws {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public int draw_id = 0;
+    private  int draw_id;
     private int flop1;
     private int flop2;
     private int flop3;
@@ -18,7 +14,8 @@ public class Draws {
 
     }
 
-    public Draws(int p_flop1, int p_flop2, int p_flop3, int p_turn, int p_river){
+    public Draws(int p_draw_id, int p_flop1, int p_flop2, int p_flop3, int p_turn, int p_river){
+        this.draw_id = p_draw_id;
         this.flop1 = p_flop1;
         this.flop2 = p_flop2;
         this.flop3 = p_flop3;

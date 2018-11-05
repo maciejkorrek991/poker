@@ -10,7 +10,7 @@
         </meta>
 
         <id name = "draw_id" type = "int" column = "draw_id">
-            <generator class="native"/>
+            <generator class="assigned"/>
         </id>
 
         <property name = "flop1" column = "flop1" type = "int"/>

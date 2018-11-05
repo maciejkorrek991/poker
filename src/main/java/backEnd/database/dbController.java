@@ -1,23 +1,18 @@
 package backEnd.database;
 
 
-import backEnd.engine.Props.Card;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Order;
 
-import java.io.Serializable;
-import java.sql.*;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 
 public class dbController {
     SessionFactory factory;
-
+    Transaction tx = null;
 
     public dbController(){
         System.out.println("dzialam dbController");
@@ -26,17 +21,37 @@ public class dbController {
 
 
     }
+    public int getMaxDrawId(){
 
-    public List getRecords(String p_Table_Name) {
+        Session session = factory.openSession();
+        Draws oldest = null;
+        try {
+            tx = session.beginTransaction();
+            oldest =
+                    (Draws) session.createCriteria(Draws.class)
+                            .addOrder(Order.desc("draw_id"))
+                            .setMaxResults(1)
+                            .uniqueResult();
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+    return oldest.getDraw_id();
+    }
+
+    public List getRecords(String p_Table_Name, String p_additional_stmt) {
 
 
 
         Session session = factory.openSession();
-        Transaction tx = null;
         List list = null;
         try {
             tx = session.beginTransaction();
-            list = session.createQuery("FROM " + p_Table_Name).list();
+            list = session.createQuery("FROM " + p_Table_Name + " " + p_additional_stmt).list();
             tx.commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
@@ -54,7 +69,6 @@ public class dbController {
         Session session = factory.openSession();
         Transaction tx = session.getTransaction();
         session.beginTransaction();
-        List list = null;
         try {
             session.save(p_Object);
             session.getTransaction().commit();
